@@ -1,0 +1,89 @@
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+  <h1 class="top">予定表</h1>
+  <br>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2><div class="schedule">今日の予定</div></h2>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>タイトル</th>
+            <th>日程</th>
+            <th><th>
+            <th><th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @blogs.each do |blog| %>
+            <% if blog.start_time.to_s.match(/#{Date.today.to_s}.+/) %>
+              <tr>
+                <td><%= link_to blog.title , blog %></td>
+                <td><%= blog.start_time.strftime("%m-%d") %></td>
+                <td><%= link_to "編集", edit_blog_path(blog), class: 'btn btn-primary' %><td>
+                <td><%= link_to '消去', blog_path(blog.id), method: :delete, data: { confirm: '削除してもよろしいですか？?' }, class: 'btn btn-danger' %></td>
+                </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+
+
+
+      <%= form_with(model: @blog, local: true) do |form| %>
+
+        <div class="title">
+          <div class="form-tag">タイトル</div>
+          <%= form.text_field :title %>
+        </div>
+
+
+        <div class="content">
+          <div class="form-tag">内容</div>
+          <%= form.text_field :content %>
+        </div>
+
+        <div class="time">
+          <div class="form-tag">時間</div>
+          <%= form.datetime_select :start_time %>
+        </div>
+
+      <div class="submit">
+          <%= form.submit %>
+      </div>
+      <% end %>
+    </div>
+
+    <br>
+
+
+    <br>
+    <div class="col-md-8">
+    <%= month_calendar events: @blogs do |date, blogs| %>
+      <%= date.day %>
+
+      <% blogs.each do |blog| %>
+        <div>
+          <%= link_to blog.title, blog %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+  
+    <h2>予定一覧</h2>
+  <tbody>
+    <table class="table table-hover">
+      <tr><th>日程</th><th>タイトル</th></tr>
+        <% @blogs.each do |blog| %>
+          <tr>
+            <tr><td><%= blog.start_time.strftime("%m-%d") %></td><td><%= link_to blog.title , blog %></td></tr>
+          </tr>
+        <% end %>
+  </tbody>  
+
+</div>
+

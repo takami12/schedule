@@ -1,0 +1,45 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.simple-calendar {
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month {}
+  .current-month {}
+
+  .has-events {}
+
+  
+}
+h1{
+    text-align: center;
+    background:linear-gradient(to bottom, transparent 0%, transparent 50%, #02f2fa 51%, #03fae5);
+}
+
+.toppage{
+  margin: 20px;
+  
+}
+
+/*.col-md-4{
+    background-color: rgb(128, 236, 137);
+}
+
+.a{
+  width: 70%;
+}*/

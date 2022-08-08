@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<h1>編集画面</h1>
+<%= form_with(model: @blog, local: true) do |form| %>
+<table class="table">
+    <div class="show">
+        
+            <div class="title">
+                <div class="form-tag">タイトル</div>
+                <div class="a"><%= form.text_field :title %></div>
+            </div>
+
+            <div class="content">
+                <div class="form-tag">内容</div>
+                <%= form.text_area :content, :size=>"60x10" %>
+            </div>
+            
+            <div class="time">
+                <%= form.datetime_select :start_time %>
+            </div>
+
+            <div class="submit">
+                <%= form.submit %>
+            </div>
+        
+
+
+         
+    </div><!--/.show-->
+</table>
+<% end %>
+<%= link_to '消去',blog_path(@blog.id), method: :delete, data: { confirm: '削除してもよろしいですか？' } , class: 'btn btn-danger'%>
+         <%= link_to '戻る', blogs_path, class: 'btn btn-secondary'%>
